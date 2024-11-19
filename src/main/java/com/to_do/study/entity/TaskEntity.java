@@ -3,6 +3,7 @@ package com.to_do.study.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "task")
@@ -19,6 +20,9 @@ public class TaskEntity {
     private boolean completed;
 
     private LocalDateTime createAt;
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = false)
+    private Set<TagEntity> tags;
 
     public TaskEntity() {
     }
@@ -69,5 +73,13 @@ public class TaskEntity {
 
     public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
+    }
+
+    public Set<TagEntity> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<TagEntity> tags) {
+        this.tags = tags;
     }
 }

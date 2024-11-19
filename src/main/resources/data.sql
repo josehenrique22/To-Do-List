@@ -13,6 +13,13 @@ CREATE TABLE task (
     create_at TIMESTAMP NOT NULL
 );
 
+CREATE TABLE tag (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    task_id BIGINT NOT NULL,
+    FOREIGN KEY (task_id) REFERENCES task(id) -- Chave estrangeira para task
+);
+
 INSERT INTO USERS (id, user_name, email, pass_word)
 VALUES (1, 'admin', 'admin@example.com', '12345');
 
