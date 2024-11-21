@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tag")
-public class TagEntity {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,12 @@ public class TagEntity {
 
     @ManyToOne
     @JoinColumn(name = "task_id", nullable = false)
-    private TaskEntity task;
+    private Task task;
 
-    public TagEntity() {
+    public Tag() {
     }
 
-    public TagEntity(Long id, String name, TaskEntity task) {
+    public Tag(Long id, String name, Task task) {
         this.id = id;
         this.name = name;
         this.task = task;

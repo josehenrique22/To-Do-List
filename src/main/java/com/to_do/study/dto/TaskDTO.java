@@ -1,16 +1,12 @@
-package com.to_do.study.entity;
+package com.to_do.study.dto;
 
-import jakarta.persistence.*;
+import com.to_do.study.entity.Task;
+import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Entity
-@Table(name = "task")
-public class TaskEntity {
+public class TaskDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -21,18 +17,11 @@ public class TaskEntity {
 
     private LocalDateTime createAt;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = false)
-    private Set<TagEntity> tags;
-
-    public TaskEntity() {
+    public TaskDTO() {
     }
 
-    public TaskEntity(Long id, String title, String description, boolean completed, LocalDateTime createAt) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.completed = completed;
-        this.createAt = createAt;
+    public TaskDTO(Task entity) {
+        BeanUtils.copyProperties(entity, this);
     }
 
     public Long getId() {
@@ -73,13 +62,5 @@ public class TaskEntity {
 
     public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
-    }
-
-    public Set<TagEntity> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<TagEntity> tags) {
-        this.tags = tags;
     }
 }
