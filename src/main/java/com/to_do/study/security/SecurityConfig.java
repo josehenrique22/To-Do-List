@@ -15,6 +15,8 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll() // Permite acesso ao H2 Console
                         .requestMatchers("/users/**").permitAll()   // Permite acesso à rota /users
                         .requestMatchers("/task/**").permitAll()
+                        .requestMatchers("/User/**").permitAll()
+                        .requestMatchers("/tag/**").permitAll()
                         .anyRequest().authenticated())               // Protege todas as outras rotas
                 .csrf(csrf -> csrf.disable())                   // Desativa CSRF
                 .headers(headers -> headers
